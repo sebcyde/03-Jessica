@@ -4,21 +4,6 @@ const chokidar = require('chokidar');
 const path = require('path');
 const fs = require('fs');
 
-// const openTerminalWithLogs = () => {
-// 	const logsPath = path.join(__dirname, 'logs.txt'); // Replace with your log file path
-
-// 	const terminal = spawn('cmd.exe', [
-// 		'/c',
-// 		`start cmd.exe /K "type ${logsPath} && pause"`,
-// 	]);
-
-// 	terminal.on('error', (err) => {
-// 		console.error(`Failed to open terminal window: ${err}`);
-// 	});
-// };
-
-// Watch for files whose filename include the word 'Japanese'
-
 const watchJapaneseFiles = () => {
 	const japaneseWatcher = chokidar.watch('C:\\Users\\SebCy\\Downloads', {
 		ignored: /(^|[\/\\])\../, // ignore dotfiles
@@ -27,22 +12,22 @@ const watchJapaneseFiles = () => {
 
 	japaneseWatcher.on('add', (filePath) => {
 		const fileName = path.basename(filePath);
-		if (filePath.includes('Japanese')) {
-			if (filePath.includes('HW')) {
+		if (filePath.toLowerCase().includes('japanese')) {
+			if (filePath.toLowerCase().includes('homework')) {
 				// Japanese Homework
 				const destination = 'C:/Users/SebCy/Documents/Japanese/HW/' + fileName;
 				fs.rename(filePath, destination, (err) => {
 					if (err) throw err;
 					notifier.notify({
 						title: 'Jessica',
-						icon: './Icons/JessicaIcon.jpg',
+						icon: './Icons/JessicaIcon.png',
 						appID: 'Jessica',
 						message: `I've moved ${fileName} to your Japanese Homework folder to help keep your downloads folder clear. The end destination is ${destination}.`,
 					});
 				});
 			}
 
-			if (filePath.includes('Certificate')) {
+			if (filePath.toLowerCase().includes('certificate')) {
 				// Japanese Completion Certificates
 				const destination =
 					'C:/Users/SebCy/Documents/Japanese/Certificates/' + fileName;
@@ -52,7 +37,7 @@ const watchJapaneseFiles = () => {
 					notifier.notify({
 						appID: 'Jessica',
 						title: 'Jessica',
-						icon: './Icons/JessicaIcon.jpg',
+						icon: './Icons/JessicaIcon.png',
 						message: `Congrats on the new certificate! I've put it with the others in the Japanese certificates folder.`,
 					});
 				});
@@ -86,8 +71,8 @@ const watchImageFiles = () => {
 				notifier.notify({
 					appID: 'Jessica',
 					title: 'Jessica',
-					icon: './Icons/JessicaIcon.jpg',
-					message: `I've moved ${fileName} to the images folder for you.`,
+					icon: './Icons/JessicaIcon.png',
+					message: `I've moved this to the images folder for you.`,
 				});
 			});
 		}
