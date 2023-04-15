@@ -35,6 +35,8 @@ const watchJapaneseFiles = () => {
 					if (err) throw err;
 					notifier.notify({
 						title: 'Jessica',
+						icon: './Icons/JessicaIcon.jpg',
+						appID: 'Jessica',
 						message: `I've moved ${fileName} to your Japanese Homework folder to help keep your downloads folder clear. The end destination is ${destination}.`,
 					});
 				});
@@ -48,7 +50,9 @@ const watchJapaneseFiles = () => {
 					if (err) throw err;
 
 					notifier.notify({
+						appID: 'Jessica',
 						title: 'Jessica',
+						icon: './Icons/JessicaIcon.jpg',
 						message: `Congrats on the new certificate! I've put it with the others in the Japanese certificates folder.`,
 					});
 				});
@@ -80,7 +84,9 @@ const watchImageFiles = () => {
 				if (err) throw err;
 
 				notifier.notify({
+					appID: 'Jessica',
 					title: 'Jessica',
+					icon: './Icons/JessicaIcon.jpg',
 					message: `I've moved ${fileName} to the images folder for you.`,
 				});
 			});
