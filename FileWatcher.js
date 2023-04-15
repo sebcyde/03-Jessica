@@ -1,4 +1,5 @@
 // const { spawn } = require('child_process');
+const notifier = require('node-notifier');
 const chokidar = require('chokidar');
 const path = require('path');
 const fs = require('fs');
@@ -32,9 +33,10 @@ const watchJapaneseFiles = () => {
 				const destination = 'C:/Users/SebCy/Documents/Japanese/HW/' + fileName;
 				fs.rename(filePath, destination, (err) => {
 					if (err) throw err;
-					console.log(
-						`Jessica - I've moved ${fileName} to your Japanese Homework folder to help keep your downloads folder clear. The end destination is ${destination}.`
-					);
+					notifier.notify({
+						title: 'Jessica',
+						message: `I've moved ${fileName} to your Japanese Homework folder to help keep your downloads folder clear. The end destination is ${destination}.`,
+					});
 				});
 			}
 
@@ -44,9 +46,11 @@ const watchJapaneseFiles = () => {
 					'C:/Users/SebCy/Documents/Japanese/Certificates/' + fileName;
 				fs.rename(filePath, destination, (err) => {
 					if (err) throw err;
-					console.log(
-						`Jessica - Congrats on the new certificate! I've put it with the others in the Japanese certificates folder.`
-					);
+
+					notifier.notify({
+						title: 'Jessica',
+						message: `Congrats on the new certificate! I've put it with the others in the Japanese certificates folder.`,
+					});
 				});
 			}
 		}
@@ -74,9 +78,11 @@ const watchImageFiles = () => {
 			const destination = 'C:/Users/SebCy/Documents/Pictures/' + fileName;
 			fs.rename(filePath, destination, (err) => {
 				if (err) throw err;
-				console.log(
-					`Jessica - I've moved your new image to the images folder for you.`
-				);
+
+				notifier.notify({
+					title: 'Jessica',
+					message: `I've moved ${fileName} to the images folder for you.`,
+				});
 			});
 		}
 	});
