@@ -22,7 +22,7 @@ const watchJapaneseFiles = () => {
 						title: 'Jessica',
 						icon: './Icons/JessicaIcon.png',
 						appID: 'Jessica',
-						message: `I've moved ${fileName} to your Japanese Homework folder to help keep your downloads folder clear. The end destination is ${destination}.`,
+						message: `I've moved this to your Japanese Homework folder.`,
 					});
 				});
 			}
@@ -38,7 +38,7 @@ const watchJapaneseFiles = () => {
 						appID: 'Jessica',
 						title: 'Jessica',
 						icon: './Icons/JessicaIcon.png',
-						message: `Congrats on the new certificate! I've put it with the others in the Japanese certificates folder.`,
+						message: `I've put it with the others in the Japanese certificates folder.`,
 					});
 				});
 			}
@@ -80,4 +80,32 @@ const watchImageFiles = () => {
 	return ImageWatcher;
 };
 
-module.exports = { watchJapaneseFiles, watchImageFiles };
+const watchExeFiles = () => {
+	// Watch for image files
+	const ExecWatcher = chokidar.watch('C:\\Users\\SebCy\\Downloads', {
+		ignored: /(^|[\/\\])\../,
+		persistent: true,
+		usePolling: true,
+	});
+
+	ExecWatcher.on('add', (filePath) => {
+		const fileName = path.basename(filePath);
+		const extName = path.extname(filePath);
+		if (extName.toLowerCase() === '.exe') {
+			const destination = 'C:/Users/SebCy/Documents/Execs/' + fileName;
+			fs.rename(filePath, destination, (err) => {
+				if (err) throw err;
+
+				notifier.notify({
+					appID: 'Jessica',
+					title: 'Jessica',
+					icon: './Icons/JessicaIcon.png',
+					message: `I've moved this to the Executables folder.`,
+				});
+			});
+		}
+	});
+	return ExecWatcher;
+};
+
+module.exports = { watchJapaneseFiles, watchImageFiles, watchExeFiles };
