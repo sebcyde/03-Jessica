@@ -14,7 +14,7 @@ const SendEmailNotif = async (Message, Title) => {
 				{
 					From: {
 						Email: 'scyde1@hotmail.com',
-						Name: 'Jessica C',
+						Name: 'Jessica Cyde',
 					},
 					To: [
 						{
