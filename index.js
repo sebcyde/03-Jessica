@@ -1,3 +1,4 @@
+const { AnimeUpdates } = require('./Functions/Updates/Anime/AnimeUpdates');
 const {
 	watchJapaneseFiles,
 	watchImageFiles,
@@ -7,3 +8,9 @@ const {
 const japaneseWatcher = watchJapaneseFiles();
 const imageWatcher = watchImageFiles();
 const exeWatcher = watchExeFiles();
+
+const PeriodicUpdates = async () => {
+	await AnimeUpdates();
+};
+
+PeriodicUpdates();

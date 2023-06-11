@@ -1,8 +1,7 @@
-// const { spawn } = require('child_process');
-const notifier = require('node-notifier');
 const chokidar = require('chokidar');
 const path = require('path');
 const fs = require('fs');
+const { SendToastNotif } = require('./Functions/ToastNotifs');
 
 const watchJapaneseFiles = () => {
 	const japaneseWatcher = chokidar.watch('C:\\Users\\SebCy\\Downloads', {
@@ -18,12 +17,7 @@ const watchJapaneseFiles = () => {
 				const destination = 'C:/Users/SebCy/Documents/Japanese/HW/' + fileName;
 				fs.rename(filePath, destination, (err) => {
 					if (err) throw err;
-					notifier.notify({
-						title: 'Jessica',
-						icon: './Icons/JessicaIcon.png',
-						appID: 'Jessica',
-						message: `I've moved this to your Japanese Homework folder.`,
-					});
+					SendToastNotif("I've moved this to your Japanese Homework folder.");
 				});
 			}
 
@@ -33,13 +27,9 @@ const watchJapaneseFiles = () => {
 					'C:/Users/SebCy/Documents/Japanese/Certificates/' + fileName;
 				fs.rename(filePath, destination, (err) => {
 					if (err) throw err;
-
-					notifier.notify({
-						appID: 'Jessica',
-						title: 'Jessica',
-						icon: './Icons/JessicaIcon.png',
-						message: `I've put it with the others in the Japanese certificates folder.`,
-					});
+					SendToastNotif(
+						"I've put it with the others in the Japanese certificates folder."
+					);
 				});
 			}
 		}
@@ -67,13 +57,7 @@ const watchImageFiles = () => {
 			const destination = 'C:/Users/SebCy/Documents/Pictures/' + fileName;
 			fs.rename(filePath, destination, (err) => {
 				if (err) throw err;
-
-				notifier.notify({
-					appID: 'Jessica',
-					title: 'Jessica',
-					icon: './Icons/JessicaIcon.png',
-					message: `I've moved this to the images folder for you.`,
-				});
+				SendToastNotif("I've moved this to the images folder for you.");
 			});
 		}
 	});
@@ -95,13 +79,7 @@ const watchExeFiles = () => {
 			const destination = 'C:/Users/SebCy/Documents/Execs/' + fileName;
 			fs.rename(filePath, destination, (err) => {
 				if (err) throw err;
-
-				notifier.notify({
-					appID: 'Jessica',
-					title: 'Jessica',
-					icon: './Icons/JessicaIcon.png',
-					message: `I've moved this to the Executables folder.`,
-				});
+				SendToastNotif("I've moved this to the Executables folder.");
 			});
 		}
 	});
