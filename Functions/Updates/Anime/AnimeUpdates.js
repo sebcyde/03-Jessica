@@ -102,11 +102,11 @@ const AnimeUpdates = async () => {
 	});
 
 	// Testing
-	FavouritesSchedule.push({
-		Title: 'Kimetsu no Yaiba: Katanakaji no Sato-hen',
-		Title_Eng: 'Example Test',
-		Schedule: now.toISOString(),
-	});
+	// FavouritesSchedule.push({
+	// 	Title: 'Kimetsu no Yaiba: Katanakaji no Sato-hen',
+	// 	Title_Eng: 'Kimetsu no Yaiba',
+	// 	Schedule: now.toISOString(),
+	// });
 
 	// console.log('Upload Schedule:', UploadSchedule);
 	// console.log('Favourites List:', FavouritesList);

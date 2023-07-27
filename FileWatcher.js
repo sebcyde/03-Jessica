@@ -86,4 +86,46 @@ const watchExeFiles = () => {
 	return ExecWatcher;
 };
 
-module.exports = { watchJapaneseFiles, watchImageFiles, watchExeFiles };
+const string = 'hello english. こんにちは ';
+
+const isJapanese = (string) => {
+	return string.match(
+		/[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/
+	);
+};
+
+const FileWatcher = async () => {
+	const Watcher = chokidar.watch('C:\\Users\\SebCy\\Downloads', {
+		ignored: /(^|[\/\\])\../, // ignore dotfiles
+		persistent: true,
+	});
+
+	Watcher.on('add', (filePath) => {
+		fs.readFile(filePath, 'utf8', (err, data) => {
+			if (err) {
+				console.error(err);
+				return;
+			}
+			const fileName = path.basename(filePath);
+
+			if (isJapanese(data)) {
+				const destination = 'C:/Users/SebCy/Documents/Japanese/' + fileName;
+				fs.rename(filePath, destination, (err) => {
+					if (err) throw err;
+					SendToastNotif(
+						"I've put it with the others in the Japanese certificates folder."
+					);
+				});
+			}
+
+			console.log(data);
+		});
+	});
+};
+
+module.exports = {
+	FileWatcher,
+	watchJapaneseFiles,
+	watchImageFiles,
+	watchExeFiles,
+};

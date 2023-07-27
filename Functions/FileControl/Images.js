@@ -11,16 +11,23 @@ const watchImageFiles = () => {
 		usePolling: true, // enable polling for better file detection on some systems
 	});
 
+	const currentDate = new Date();
+	const day = String(currentDate.getUTCDate()).padStart(2, '0');
+	const month = String(currentDate.getUTCMonth() + 1).padStart(2, '0');
+	const year = currentDate.getUTCFullYear();
+	const formattedDate = `${day}${month}${year}`;
+
 	ImageWatcher.on('add', (filePath) => {
 		const fileName = path.basename(filePath);
 		const extName = path.extname(filePath);
 		if (
 			extName.toLowerCase() === '.png' ||
 			extName.toLowerCase() === '.jpg' ||
-			extName.toLowerCase() === '.jpeg' ||
+			extName.toLowerCase() === '.jpeg' ||			
 			extName.toLowerCase() === '.webp'
 		) {
-			const destination = 'C:/Users/SebCy/Documents/Pictures/' + fileName;
+			const destination =
+				'C:/Users/SebCy/Documents/Pictures/' + formattedDate + '/' + fileName;
 			fs.rename(filePath, destination, (err) => {
 				if (err) throw err;
 
