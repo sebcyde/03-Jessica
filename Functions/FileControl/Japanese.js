@@ -29,7 +29,7 @@ const watchJapaneseFiles = () => {
 						title: 'Jessica',
 						icon: './Icons/JessicaIcon.png',
 						appID: 'Jessica',
-						message: `I've moved this to your Japanese Homework folder. It's saved as ${fileName}`,
+						message: `I've moved this to your Japanese Homework folder.`,
 					});
 				} catch (err) {
 					console.error('Error moving file:', err);
@@ -43,7 +43,7 @@ const watchJapaneseFiles = () => {
 						appID: 'Jessica',
 						title: 'Jessica',
 						icon: './Icons/JessicaIcon.png',
-						message: `I've put it with the others in the Japanese certificates folder. It's saved as ${fileName}`,
+						message: `I've put it with the others in the Japanese certificates folder.`,
 					});
 				} catch (err) {
 					console.error('Error moving file:', err);
