@@ -1,16 +1,17 @@
-const { AnimeUpdates } = require('./Functions/Updates/Anime/AnimeUpdates');
+// const { AnimeUpdates } = require('./Functions/Updates/Anime/AnimeUpdates');
 const {
-	watchJapaneseFiles,
+	// watchJapaneseFiles,
 	watchImageFiles,
 	watchExeFiles,
 } = require('./FileWatcher');
+const { watchJapaneseFiles } = require('./Functions/FileControl/Japanese');
 
-const japaneseWatcher = watchJapaneseFiles();
-const imageWatcher = watchImageFiles();
-const exeWatcher = watchExeFiles();
+const WJ = watchJapaneseFiles();
+const WI = watchImageFiles();
+const WE = watchExeFiles();
 
-const PeriodicUpdates = async () => {
-	await AnimeUpdates();
-};
+// const PeriodicUpdates = async () => {
+// await AnimeUpdates();
+// };
 
-PeriodicUpdates();
+// PeriodicUpdates();
